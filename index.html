@@ -33,9 +33,10 @@ body {
 <script src="http://d3js.org/d3.v3.min.js"></script>
 
 <script>
+const body = document.querySelector('html');
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = window.innerWidth - margin.left - margin.right,
+    height = window.innerHeight - margin.top - margin.bottom;
 
 /* 
  * value accessor - returns the value to encode for a given data object.
@@ -145,7 +146,8 @@ d3.csv("./nba.csv", function(error, data) {
       .data(color.domain())
     .enter().append("g")
       .attr("class", "legend")
-      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+      .attr("transform", function(d, i) { return "translate(-" + (width - 150) + "," + i * 20 + ")"; });
+      // .attr("transform", function(d, i) { return "translate(" + 0 + "," + i * 20 + ")"; });
 
   // draw legend colored rectangles
   legend.append("rect")
